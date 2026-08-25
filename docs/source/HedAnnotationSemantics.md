@@ -77,7 +77,7 @@ The reversibility principle provides a practical test for whether your HED annot
 
 ````{admonition} **Example:** A reversible HED annotation
 ```
- Sensory-event, Experimental-stimulus, Target, Visual-presentation, 
+ Sensory-event, Experimental-stimulus, Target, Visual-presentation,
 ((Green, Triangle), (Center-of, Computer-screen))
 ```
 ````
@@ -122,7 +122,7 @@ class: tip
 
 ```
 
-While reversibility is a property of a single annotation, discrimination is a property of a set of annotations. If two events represent different values of a contrast variable, or will need to be separated in downstream analysis, their assembled HED annotations must differ. Tools that search, epoch, or summarize data based on HED can only separate events whose annotations are distinct.
+While reversibility is a property of a single annotation, discrimination is a property of a set of annotations. If two events represent different values of a contrast variable or will need to be separated in downstream analysis, their assembled HED annotations must differ. Tools that search, epoch, or summarize data based on HED can only separate events whose annotations are distinct.
 
 ````{admonition} **Example:** Distinguishable annotations for an auditory oddball experiment
 ```
@@ -159,7 +159,7 @@ Each individual annotation is reversible -- it translates to the coherent Englis
 
 A common version of this problem is tagging every stimulus row as just `Sensory-event` (or every response row as just `Agent-action`) without enough detail to tell the events apart. Such annotations are syntactically valid and individually reversible but useless for analysis.
 
-**A simple discrimination test:** List the experimental conditions or event categories that your analysis (or a future re-analysis) will need to separate. For each pair, compare the assembled annotations: if any pair is identical, the annotations need more detail. Equivalently, the number of distinct assembled annotations in your timeline data should be at least the number of conditions you intend to distinguish (the [HED summary tools](HedSummaryGuide.md) can list the distinct annotations for you).
+**A simple discrimination test:** List the experimental conditions or event categories that your analysis (or a future re-analysis) will need to separate. For each pair, compare the assembled annotations: if any pair is identical, the annotations need more detail. Equivalently, the number of distinct assembled annotations in your timeline data should be at least the number of conditions you intend to distinguish. The [HED summary tools](HedSummaryGuide.md) can list the distinct annotations for you.
 
 ## Timeline vs descriptor data
 
@@ -192,7 +192,7 @@ Timeline data has timestamps indicating when things happen. Every assembled anno
 ````{admonition} **Example:** Correct timeline annotation (BIDS)
 
 **Excerpt from:** `events.tsv`
-| onset | duration | event_type | 
+| onset | duration | event_type |
 |-------| -------- | ---------- |
 | 2.5   | n/a      | square     |
 
@@ -277,7 +277,7 @@ Remember that HED vocabularies maintain a strict taxonomical or is-a relationshi
 ---
 class: tip
 ---
-**The order of tags in a HED annotation does not affect its meaning.** 
+**The order of tags in a HED annotation does not affect its meaning.**
 ```
 
 The annotations `Red, Circle` and the annotations `Circle, Red` are semantically equivalent—-both are just a list of two independent tags.
@@ -459,12 +459,12 @@ It is also possible to annotate this as a single sensory event that is an experi
 
 | onset | duration | event_type      |
 | ----- | -------- | --------------- |
-| 104.5 |  'n/a'   |  show_circle    | 
+| 104.5 |  'n/a'   |  show_circle    |
 | 104.5 |  'n/a'   |  sound_green    |
 
 **Asssembled annotation:**
 ```
-(Sensory-event, Experimental-stimulus, Visual-presentation, (Red, Circle)), 
+(Sensory-event, Experimental-stimulus, Visual-presentation, (Red, Circle)),
 (Sensory-event, Experimental-stimulus, Auditory-presentation, (Word, Label/Green))
 ```
 ````
@@ -502,7 +502,7 @@ At time 104.5 seconds into the experiment a circle is presented on the computer 
 ---
 class: tip
 ---
-**Every type of event has a perspective that informs the viewpoint of the annotation.** 
+**Every type of event has a perspective that informs the viewpoint of the annotation.**
 ```
 
 Perspective is generally a property of timeline data not descriptor data. Correct identification of the perspective allows downstream tools to assess the influence of the event on the participants' cognition and behavior. Event annotations that contain `Agent` and/or `Agent-task-role` tags have **explicit** perspective, while those without those tags have **implicit** perspective. See the Event table in [Rule 2: Classify events carefully](#rule-2-classify-events-carefully) for the implicit agent associated with each event type.
@@ -1026,7 +1026,7 @@ Use `Duration` when you know the event's duration and want to capture it in a si
 
 **Sidecar:** `events.json`
 ```json
-{ 
+{
   "duration": {
     "HED": "(Duration/# s, ({event_type}, {cross_size}))"
   },
@@ -1129,7 +1129,7 @@ The `Delay` tag is used to indicate that the event starts at a specified delay f
 
 **Sidecar:** `events.json`
 ```json
-{ 
+{
   "event_type": {
     "HED": {
       "square": "(Sensory-event, experimental-stimulus, Visual-presentation, Square)"
@@ -1247,7 +1247,7 @@ class: warning
 
 **Correct:**
 ```
-(Sensory-event, Visual-presentation, (Red, Circle)), 
+(Sensory-event, Visual-presentation, (Red, Circle)),
 (Agent-action, Participant-response, (Experiment-participant, Press))
 ```
 ````

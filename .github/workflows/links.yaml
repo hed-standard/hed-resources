@@ -58,6 +58,19 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
-          # Check the built HTML files recursively (includes internal links)
-          args: --config lychee.toml --verbose --no-progress --max-redirects 10 'docs/_build/html/**/*.html'
+          # Check this repo's own built pages only - the top-level *.html files.
+          # Every subdirectory under docs/_build/html/ is either _modules/
+          # (autodoc output) or a copy of a submodule's documentation, and each
+          # submodule runs its own link check. Checking them here duplicates that
+          # work, reports failures nobody in this repo can fix, and made the job
+          # 9x slower.
+          #
+          # No --verbose: it prints a line for every checked AND every excluded
+          # link. lychee.toml excludes 'file://', so each internal link between
+          # built pages prints too - with submodules in scope that was ~135k
+          # lines, which GitHub truncates, hiding the actual errors at the end.
+          # Without it lychee prints only the failures, the file each one is in,
+          # and a summary. Add --verbose back temporarily when diagnosing a
+          # specific link, not as the standing configuration.
+          args: --config lychee.toml --no-progress --max-redirects 10 'docs/_build/html/*.html'
           fail: true

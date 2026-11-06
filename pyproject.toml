@@ -148,3 +148,6 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["scripts"]
+
+[tool.ruff.format]
+line-ending = "lf"
